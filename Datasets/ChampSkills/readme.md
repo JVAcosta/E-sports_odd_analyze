@@ -11,9 +11,9 @@ The strcture of an skill is given by:
 
 ```json
    "Dragon's Descent":{  
-      'skill':"Dragon's Descent",
-      'type':[  
-         'Dash'
+      "skill":"Dragon's Descent",
+      "type":[  
+         "Dash"
       ],
-      'champion':'Shyvana'
+      "champion":"Shyvana"
 ```
