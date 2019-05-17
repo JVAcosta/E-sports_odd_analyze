@@ -9,13 +9,16 @@ class ChampTags:
     def createDataFrames(self):
         part_df=self.lol_df.loc[:,['CHAMP1','CHAMP2','Total_Played','Wins']]
         return1=part_df.rename(index=str,   columns={'CHAMP1':'TAG1',"CHAMP2":'TAG2'})
-        self.lol_df=return1.groupby(['TAG1','TAG2'],0,None,True,False,False).sum()
-        for i in range(len(self.lol_df)):
-            print(self.lol_df)
-            dat=self.lol_df.iloc[0,'TAG1']
-            data = self.lolChamps['data'][dat]
-            self.lol_df[i,'TAG1'] = self.lolChamps['data'][self.lol_df.iat[i,0]]
-            
+        self.lol_df=pd.DataFrame(return1.groupby(['TAG1','TAG2'],0,None,True,False,False).sum()).reset_index()
+        for i, v in self.lol_df.iterrows():
+            tags1 = ''
+            for x in self.lolChamps['data'][v.TAG1]['tags']: tags1 += x+'/'
+            self.lol_df.at[i,'TAG1'] = tags1
+            tags2 = ''
+            for x in self.lolChamps['data'][v.TAG2]['tags']: tags2 += x+'/'
+            self.lol_df.at[i,'TAG2'] = tags2
+        self.lol_df=pd.DataFrame( self.lol_df.groupby(['TAG1','TAG2'],0,None,True,False,False).sum()).reset_index()
+
         return self.lol_df
 
 
