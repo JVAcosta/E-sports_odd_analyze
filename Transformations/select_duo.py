@@ -42,19 +42,22 @@ def start(df):
     frames.append(duplaRed4)
 
     result = pd.concat(frames)
-    print(result.head())
+    # print(result.head())
     season = str(result['Season'].tolist()[0])
     year = str(result['Year'].tolist()[0])
     result.to_csv('../Results/selected_duos_'+year +
                   '_'+season+'.csv', encoding='utf-8')
+    return result
+
+
+def duosBySeasonAndYear(df):
+    splitedDfs = splitDfBySeasonAndYear(df)
+    # result = map(start, splitedDfs)
+    result = [start(x) for x in splitedDfs if not(x.empty)]
+    return result
 
 
 lol_df = pd.read_csv('../Datasets/Kaggle/LeagueofLegends.csv')
-splitedDfs = splitDfBySeasonAndYear(lol_df)
-# result = map(start, splitedDfs)
-result = [start(x) for x in splitedDfs if not(x.empty)]
-# print(len(splitedDfs))
-# for i in range(len(splitedDfs)):
-#     dfi = splitedDfs[i]
-#     if not(dfi.empty):
-#         start(dfi)
+
+result = duosBySeasonAndYear(lol_df)
+print(result[0].head())
