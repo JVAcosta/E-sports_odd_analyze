@@ -1,3 +1,4 @@
 import pandas as pd
+import os
 
-LeagueofLegends_df = pd.read_csv("LeagueofLegends.csv")
+LeagueofLegends_df = read_csv(os.getcwd()+'\Datasets\Kaggle\LeagueofLegends.csv','r')
