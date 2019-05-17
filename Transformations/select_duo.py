@@ -36,7 +36,7 @@ def start():
 
 
     result=pd.concat(frames)
-    result.to_csv('..\Datasets\champ_duos\selected_duos.csv', encoding='utf-8')
+    result.to_csv('..\Results\selected_duos.csv', encoding='utf-8')
 start()
 
 
