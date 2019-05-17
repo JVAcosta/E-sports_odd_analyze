@@ -1,11 +1,11 @@
 import pandas as pd
-from Datasets.Kaggle.datasets import LeagueofLegends_df
+#from Datasets.Kaggle.datasets import LeagueofLegends_df
 
 
 def createDataFrames(team,champ1Position,champ2Position):
     
-    lol_df = LeagueofLegends_df
-    part_df=lol_df.loc[1:30,[team+champ1Position+'Champ',team+champ2Position+'Champ','Year','Season',team[0]+'Result']]
+    lol_df = pd.read_csv('..\Datasets\Kaggle\LeagueofLegends.csv')
+    part_df=lol_df.loc[:,[team+champ1Position+'Champ',team+champ2Position+'Champ','Year','Season',team[0]+'Result']]
     part_df.insert(1,'CHAMP1_POSITION',champ1Position)
     part_df.insert(1,'CHAMP2_POSITION',champ2Position)
     part_df.insert(1, 'Partidas', 1)
@@ -36,7 +36,7 @@ def start():
 
 
     result=pd.concat(frames)
-    result.to_csv('../Datasets/champ_duos/selected_duos.csv', encoding='utf-8')
+    result.to_csv('..\Datasets\champ_duos\selected_duos.csv', encoding='utf-8')
 start()
 
 
