@@ -1,5 +1,3 @@
-
-# from Datasets.Kaggle.datasets.py import LeagueofLegends_df as df
 import pandas as pd
 from itertools import product
 
