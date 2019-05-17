@@ -22,7 +22,7 @@ champ_duos_processor
 The strcture of an line of this dataset is given by:
 
 ```json
-    "Aatrox": {
+	"Aatrox": {
       "version": "6.24.1",
       "id": "Aatrox",
       "key": "266",
