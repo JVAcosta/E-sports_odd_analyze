@@ -66,7 +66,7 @@ def start(df):
 #     return result
 
 
-# lol_df = pd.read_csv('../Datasets/Kaggle/LeagueofLegends.csv')
+lol_df = pd.read_csv('../Datasets/Kaggle/LeagueofLegends.csv')
 
-# result = start(lol_df)
-# print(result.head())
+result = start(lol_df)
+print(result.head())
