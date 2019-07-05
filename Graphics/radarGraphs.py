@@ -5,13 +5,12 @@ import numpy as np
 
 
 def champToChamp():
-    df = pd.read_csv('../Results/TagsHugo.csv')
+    df = pd.read_csv('../Results/TAGS.csv')
     # number of variable
-    print(df)
-    df["categorie"] = df["CHAMP1_y"].map(str) + df["CHAMP2_y"]
-    df = df.loc[(df['CHAMP1_x'] == 'Lucian') &
-                (df['CHAMP2_x'] == 'Braum')]
-    categories = np.array(list(df.categorie))
+    categories = []
+    for i, v in df.iterrows():
+        categories.append((v.TAG_Champ_1_Red, v.TAG_Champ_2_red))
+    categories = np.array(list(categories))
     N = len(categories)
     print(N)
 
@@ -21,8 +20,8 @@ def champToChamp():
 
     values = []
     for x in categories:
-        values.append(df.loc[df['categorie'] == x].bResult /
-                      df.loc[df['categorie'] == x].Partidas_x)
+        values.append(df.loc[df['TAG_Champ_1_Red'] == x[0]].bResult /
+                      df.loc[df['TAG_Champ_2_red'] == x[1]].Partidas_x)
     values = np.array(values)
     print(len(values))
     ax = plt.subplot(111, polar=True)
@@ -37,7 +36,7 @@ def champToChamp():
     # Fill area
     ax.fill(angles, values, 'b', alpha=0.1)
 
-    ax.show()
+    plt.show()
 
 
 champToChamp()
