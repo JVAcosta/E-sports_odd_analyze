@@ -1,7 +1,17 @@
-import matplotlib.pyplot as plt
-import pandas as pd
-from math import pi
+import seaborn as sns
 import numpy as np
+from math import pi
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
+def f2(seq):
+    # order preserving
+    checked = []
+    for e in seq:
+        if e not in checked:
+            checked.append(e)
+    return checked
 
 
 def champToChamp():
@@ -9,34 +19,32 @@ def champToChamp():
     # number of variable
     categories = []
     for i, v in df.iterrows():
-        categories.append((v.TAG_Champ_1_Red, v.TAG_Champ_2_red))
-    categories = np.array(list(categories))
+        categories.append(v.TAG_Champ_1_Red+"/" + v.TAG_Champ_2_red)
+    # categories = np.array(categories)
+    print(categories)
     N = len(categories)
-    print(N)
 
-    angles = [n / float(N) * 2 * pi for n in range(N)]
-    angles += angles[:1]
-    angles = np.array(angles)
+    angles = np.linspace(0, 2*np.pi, len(categories), endpoint=False)
+    # close the plot
+    angles = np.concatenate((angles, [angles[0]]))
 
     values = []
+    categories = f2(categories)
+    print(categories)
+    new_df = df
+    new_df.insert(
+        1, 'Tags_red', (new_df.iloc[1:-1, 3]+'/'+new_df.iloc[1:-1, 4]))
     for x in categories:
-        values.append(df.loc[df['TAG_Champ_1_Red'] == x[0]].bResult /
-                      df.loc[df['TAG_Champ_2_red'] == x[1]].Partidas_x)
-    values = np.array(values)
-    print(len(values))
-    ax = plt.subplot(111, polar=True)
-
-    # Draw one axe per variable + add labels labels yet
-    plt.xticks(angles[:-1], categories, color='grey', size=8)
-
-    # Draw ylabels
-    ax.set_rlabel_position(0)
-    ax.plot(angles[:-1], values, linewidth=1, linestyle='solid')
-
-    # Fill area
-    ax.fill(angles, values, 'b', alpha=0.1)
-
-    plt.show()
+        dfloc = new_df.loc[(new_df['Tags_red'] == x)]
+        values.append(dfloc.values)
+    print(values)
+    fig = plt.figure()
+    ax = fig.add_subplot(111, polar=True)
+    ax.plot(angles, values, 'o-', linewidth=2)
+    ax.fill(angles, values, alpha=0.25)
+    ax.set_thetagrids(angles * 180/np.pi, categories)
+    ax.grid(True)
+    fig.show()
 
 
 champToChamp()
