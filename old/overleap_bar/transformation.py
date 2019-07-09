@@ -127,6 +127,11 @@ def delete_dfs_column(df_list, column_name):
     return list(result)
 
 
+def select_rows_by_column_value(df_list, column_name, column_value):
+    result = map(lambda df: df.loc[df[column_name] == column_value], df_list)
+    return list(result)
+
+
 columns_red = red_columns
 sub_red = select_sub_frame(matchinfo_df, columns_red)
 
@@ -172,7 +177,7 @@ sum_tuples_blue = group_by_and_sum(result_tuples_blue, sum_columns)
 #     print(df.head())
 # for df in sum_tuples_blue:
 #     print(df.head())
-
+# sum_all_single_red = sum_single_red
 sum_all_single_red = delete_dfs_column(sum_single_red, YEAR)
 sum_all_single_blue = delete_dfs_column(sum_single_blue, YEAR)
 
@@ -195,6 +200,8 @@ sum_all_tuples_red = group_by_and_sum(sum_all_tuples_red, sum_columns)
 sum_all_tuples_blue = group_by_and_sum(sum_all_tuples_blue, sum_columns)
 
 
+# sum_all_single_red = select_rows_by_column_value(
+#     sum_all_single_red, YEAR, '2016')
 # for df in sum_all_single_red:
 #     print(df.head(30))
 # for df in sum_all_single_blue:
@@ -203,7 +210,6 @@ sum_all_tuples_blue = group_by_and_sum(sum_all_tuples_blue, sum_columns)
 #     print(df.head())
 # for df in sum_all_tuples_blue:
 #     print(df.head())
-df = sum_all_single_red[0]
 # df.plot.bar(stacked=True)
 
 sns.set()
@@ -227,14 +233,26 @@ def build_graph(df, side, supp_columns):
         {BRESULT: VICTORY, RRESULT: DEFEAT}
 
     new_names = df.rename(columns=graph_columns)
-    new_names.set_index(REDTOPCHAMP)\
+    new_names.set_index([REDTOPCHAMP, REDJUNGLECHAMP])\
         .plot(kind='bar', stacked=True,
               colormap=ListedColormap(sns.color_palette(colors)),
               figsize=(24, 12))
+
     plt.show()
 
 
-build_graph(df, RED, sum_columns)
+# print
+# upper = outliers_iqr(list(df[RRESULT]))
+# upper = upper[0]
+# print(upper)
+# df = sum_all_tuples_blue[0]
+df = sum_all_tuples_red[0]
+print(df.head())
+df1 = df.loc[df[RRESULT] > 50]
+build_graph(df1, RED, sum_columns)
+
+# df2 = df.loc[df[RRESULT] < 50]
+# build_graph(df, RED, sum_columns)
 # colors = ['#a30016',  '#11a81d']
 # new_names = df.rename(columns={BRESULT: DEFEAT,
 #                                RRESULT: VICTORY})
