@@ -175,6 +175,7 @@ sum_tuples_blue = group_by_and_sum(result_tuples_blue, sum_columns)
 #     print(df.head())
 # for df in sum_tuples_red:
 #     print(df.head())
+#print(sum_tuples_red)
 # for df in sum_tuples_blue:
 #     print(df.head())
 # sum_all_single_red = sum_single_red
@@ -247,9 +248,9 @@ def build_graph(df, side, supp_columns):
 # print(upper)
 # df = sum_all_tuples_blue[0]
 df = sum_all_tuples_red[0]
-print(df.head())
+#print(df.head())
 df1 = df.loc[df[RRESULT] > 50]
-build_graph(df1, RED, sum_columns)
+#build_graph(df1, RED, sum_columns)
 
 # df2 = df.loc[df[RRESULT] < 50]
 # build_graph(df, RED, sum_columns)
