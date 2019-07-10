@@ -16,6 +16,25 @@ def f2(seq):
 
 def champToChamp():
     df = pd.read_csv('../Results/TAGS.csv')
+
+    df['CHAMP_DUOS_BLUE']=df.iloc[0:-1,1]+'-'+df.iloc[0:-1,2]
+    df['CHAMP_DUOS_RED']=df.iloc[0:-1,3]+'-'+df.iloc[0:-1,4]
+    del df['TAG_Champ_1_Blue']
+    del df['TAG_Champ_2_blue']
+    del df['TAG_Champ_1_Red']
+    del df['TAG_Champ_2_red']
+    df=pd.pivot_table(df,index='CHAMP_DUOS_BLUE',columns='CHAMP_DUOS_RED')
+    print(df.keys())
+    df.to_csv('teste_felipe.csv', encoding='utf-8')
+    
+    
+
+    
+champToChamp()
+'''
+    df['CHAMP_DUOS']=df.iloc[1:-1,0]+'-'+df.iloc[1:-1,1]
+    
+    print(df)
     # number of variable
     categories = []
     for i, v in df.iterrows():
@@ -48,3 +67,4 @@ def champToChamp():
 
 
 champToChamp()
+'''
