@@ -142,11 +142,13 @@ all_duos_df = pd.concat(all_duos_list_df,sort=False)
 #---------------------------
 #print(select_duos_df_blue[0]['Wins'])
 ###############--calculo de outliers--#########################
+## Já calculei isso é para o time BLUE sem levar em         ###
+## consideração o ano                                       ###
 #top_jun-15                                                 ###
 #jun-mid-17                                                 ###
 #jung-sup-17                                                ###
 #adc-sup-22                                                 ###
-list_wins=sorted(list(select_duos_df_blue[1]['Wins']))      ###
+list_wins=sorted(list(select_duos_df_blue[1]['Wins']))#----->>>basta mudar a lista que recebe aqui e a coluna que quer saber os outliers
 rang=len(list_wins)                                         ###
 quartil_1=list_wins[(rang+3)//4]                            ###
 quartil_3=list_wins[(3*rang+1)//4]                          ###
