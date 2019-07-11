@@ -140,19 +140,24 @@ all_duos_list_df.append(select_duos_df_red[2])
 all_duos_list_df.append(select_duos_df_red[3])
 all_duos_df = pd.concat(all_duos_list_df,sort=False)
 #---------------------------
-
+#print(select_duos_df_blue[0]['Wins'])
 ###############--calculo de outliers--#########################
-list_wins=sorted(list(all_duos_df['Wins']))                 ###
+#top_jun-15                                                 ###
+#jun-mid-17                                                 ###
+#jung-sup-17                                                ###
+#adc-sup-22                                                 ###
+list_wins=sorted(list(select_duos_df_blue[1]['Wins']))      ###
 rang=len(list_wins)                                         ###
 quartil_1=list_wins[(rang+3)//4]                            ###
 quartil_3=list_wins[(3*rang+1)//4]                          ###
                                                             ###
 if quartil_1>quartil_3:                                     ###
-    faixa_inter_quartil=quartil_1-quit                      ###
+    faixa_inter_quartil=quartil_1-quartil_3                 ###
 else:                                                       ###
-    faixa_inter_quartil=quartil_3-quit                      ###
+    faixa_inter_quartil=quartil_3-quartil_1                 ###
                                                             ###
 outliers=quartil_3+(1.5*faixa_inter_quartil)                ###
+print(outliers)                                             ###
 ###############################################################
 
 all_duos_per_year_df=all_duos_df.loc[all_duos_df['Year'].isin(['2015','2016','2017'])]
