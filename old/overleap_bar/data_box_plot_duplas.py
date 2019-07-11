@@ -141,13 +141,27 @@ all_duos_list_df.append(select_duos_df_red[3])
 all_duos_df = pd.concat(all_duos_list_df,sort=False)
 #---------------------------
 
+###############--calculo de outliers--#########################
+list_wins=sorted(list(all_duos_df['Wins']))                 ###
+rang=len(list_wins)                                         ###
+quartil_1=list_wins[(rang+3)//4]                            ###
+quartil_3=list_wins[(3*rang+1)//4]                          ###
+                                                            ###
+if quartil_1>quartil_3:                                     ###
+    faixa_inter_quartil=quartil_1-quit                      ###
+else:                                                       ###
+    faixa_inter_quartil=quartil_3-quit                      ###
+                                                            ###
+outliers=quartil_3+(1.5*faixa_inter_quartil)                ###
+###############################################################
+
 all_duos_per_year_df=all_duos_df.loc[all_duos_df['Year'].isin(['2015','2016','2017'])]
 
 def plot_box (x_my,y_my,hue_my,df_my,title_my,colors):
     plot=sns.boxplot(x=x_my,y=y_my,hue=hue_my,data=df_my,palette=colors,width=0.3,saturation=1)
     plot.set_title(title_my)
     plt.legend()
-    plt.show()
+    #plt.show()
  
 plot_box('CHAMP_DUOS','Wins','Team',all_duos_df,'All_lanes_per_team',['b','r'])
 
