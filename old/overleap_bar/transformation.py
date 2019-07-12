@@ -145,12 +145,14 @@ def l(x): return [x]
 result_single_red = map_tuples_frames(sub_red, list(map(l, red_columns)))
 result_single_blue = map_tuples_frames(sub_blue, list(map(l, blue_columns)))
 
-result_tuples_red = map_tuples_frames(sub_red, red_tuples)
-result_tuples_blue = map_tuples_frames(sub_blue, blue_tuples)
+matchup = [red_tuples[i]+blue_tuples[i] for i in range(len(red_tuples))]
+
+# result_tuples_red = map_tuples_frames(sub_red, red_tuples)
+result_tuples_matchup = map_tuples_frames(matchinfo_df, matchup)
 
 
-# for df in result_single_red:
-#     print(df.head())
+for df in result_tuples_matchup:
+    print(df.head())
 # for df in result_single_blue:
 #     print(df.head())
 # for df in result_tuples_red:
@@ -175,7 +177,7 @@ sum_tuples_blue = group_by_and_sum(result_tuples_blue, sum_columns)
 #     print(df.head())
 # for df in sum_tuples_red:
 #     print(df.head())
-#print(sum_tuples_red)
+# print(sum_tuples_red)
 # for df in sum_tuples_blue:
 #     print(df.head())
 # sum_all_single_red = sum_single_red
@@ -247,10 +249,10 @@ def build_graph(df, side, supp_columns):
 # upper = upper[0]
 # print(upper)
 # df = sum_all_tuples_blue[0]
-df = sum_all_tuples_red[0]
-#print(df.head())
-df1 = df.loc[df[RRESULT] > 50]
-#build_graph(df1, RED, sum_columns)
+# df = sum_all_tuples_red[0]
+# # print(df.head())
+# df1 = df.loc[df[RRESULT] > 50]
+# build_graph(df1, RED, sum_columns)
 
 # df2 = df.loc[df[RRESULT] < 50]
 # build_graph(df, RED, sum_columns)
