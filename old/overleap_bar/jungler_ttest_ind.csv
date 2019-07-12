@@ -1,0 +1,15 @@
+BLUECHAMP,REDCHAMP,TAG_TO_COMPARE,pvalue,statistic
+blueJungleChamp,redADCChamp,Tank/Mage,0.26986169620336936,1.1197177415643331
+blueJungleChamp,redADCChamp,Assassin,,
+blueJungleChamp,redADCChamp,Fighter,0.304871855271703,-1.038434979985541
+blueJungleChamp,redADCChamp,Fighter/Tank,0.18933041461904437,1.3238284214699312
+blueJungleChamp,redADCChamp,Marksman/Mage,,
+blueJungleChamp,redADCChamp,Assassin/Fighter,0.5213193705784034,0.6434336954368806
+blueJungleChamp,redADCChamp,Mage/Support,,
+blueJungleChamp,redADCChamp,Fighter/Assassin,0.8129852726088465,0.2375703364583427
+blueJungleChamp,redADCChamp,Support/Mage,0.7956735288410139,0.2612649230077077
+blueJungleChamp,redADCChamp,Assassin/Mage,0.9320939432187583,-0.08958617182905831
+blueJungleChamp,redADCChamp,Fighter/Mage,0.9467852723617942,0.06702421399477318
+blueJungleChamp,redADCChamp,Tank/Fighter,0.27930839776400573,1.0865166442428558
+blueJungleChamp,redADCChamp,Mage/Fighter,0.7793615374190657,0.2820471872020354
+blueJungleChamp,redADCChamp,Marksman,0.1499970821591299,1.46636366366637
